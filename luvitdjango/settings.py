@@ -25,7 +25,7 @@ SECRET_KEY = 'l3&_zj2wi1#a^ziv_^i@0ck+e1n8d*2@y-uzr#_6oox1$ch0lz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://luvit-env.eba-jbjf4g2s.us-east-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['luvit-env.eba-jbjf4g2s.us-east-1.elasticbeanstalk.com']
 
 # Application definition
 
