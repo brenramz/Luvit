@@ -35,7 +35,7 @@ def product_create(request):
                 #     error_msg +="{}: {}".format(key, ','.join(value))
                 #     errors.append(error_msg)
                 products_report.append({
-                    'product_name': str(product.name),
+                    'product_name': product.get('name', ''),
                     'errors': errors
                 })
         # Add products in a bulk creation
