@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from product.models import Product
 
@@ -9,6 +10,7 @@ def product_list(request):
     data = {"products": list(products.values("id", "name", "value", "discount_value", "stock"))}
     return JsonResponse(data)
 
+@csrf_exempt
 def product_create(request):
     if request.method == "POST":
         all_valid = True
