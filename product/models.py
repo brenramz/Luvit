@@ -8,10 +8,10 @@ class Product(models.Model):
         'name', max_length=55,
         validators=[MinLengthValidator(3)])
     value = models.DecimalField(
-        'value', decimal_places=1,
+        'value', decimal_places=1, max_digits=7,
         validators=[MinValueValidator(0.0), MaxValueValidator(99999.9)])
     discount_value = models.DecimalField(
-        'discount value', decimal_places=1, null=True, blank=True,
+        'discount value', decimal_places=1, max_digits=7, null=True, blank=True,
         validators=[MinValueValidator(0.0), MaxValueValidator(99999.9)])
     stock = models.IntegerField(
         'stock', validators=[MinValueValidator(-1)])
