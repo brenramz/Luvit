@@ -40,7 +40,7 @@ def product_create(request):
         count_product_errors = 0
         products_report = []
         products = []
-        for product in request.body.getlist("product"):
+        for product in request.body.get("products", []):
             product_form = forms.ProductForm(product, instance=Product())
             if product_form.is_valid():
                 product = product_form.save()
