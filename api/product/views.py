@@ -16,27 +16,6 @@ def product_list(request):
 @csrf_exempt
 def product_create(request):
     if request.method == "POST":
-        # forms = [
-        #     ProductForm(product, instance=Product())
-        #     for product in request.POST.getlist("products"),
-        # ]
-        # all_valid = True
-        # count_product_errors = 0
-        # products_report = products = []
-        # for form in forms:
-        #     if form.is_valid():
-        #         products.append(product_form.save())
-        #     else:
-        #         all_valid = False
-        #         count_product_errors += 1
-        #         errors = []
-        #         for key,value in reschedule_form.errors.items():
-        #             error_msg +="{}: {}".format(key, ','.join(value))
-        #             errors.append(error_msg)
-        #         products_report.append({
-        #             'product_id': str(product.id),
-        #             'errors': errors
-        #         })
         all_valid = True
         count_product_errors = 0
         products_report = []
@@ -51,10 +30,10 @@ def product_create(request):
             else:
                 all_valid = False
                 count_product_errors += 1
-                errors = []
-                for key,value in reschedule_form.errors.items():
-                    error_msg +="{}: {}".format(key, ','.join(value))
-                    errors.append(error_msg)
+                errors = product_form.errors
+                # for key,value in product_form.errors.items():
+                #     error_msg +="{}: {}".format(key, ','.join(value))
+                #     errors.append(error_msg)
                 products_report.append({
                     'product_id': str(product.id),
                     'errors': errors
