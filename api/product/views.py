@@ -15,36 +15,16 @@ def product_list(request):
 @csrf_exempt
 def product_create(request):
     if request.method == "POST":
-        forms = [
-            ProductForm(product, instance=Product())
-            for product in request.POST.getlist("products"),
-        ]
-        all_valid = True
-        count_product_errors = 0
-        products_report = products = []
-        for form in forms:
-            if form.is_valid():
-                products.append(product_form.save())
-            else:
-                all_valid = False
-                count_product_errors += 1
-                errors = []
-                for key,value in reschedule_form.errors.items():
-                    error_msg +="{}: {}".format(key, ','.join(value))
-                    errors.append(error_msg)
-                products_report.append({
-                    'product_id': str(product.id),
-                    'errors': errors
-                })
+        # forms = [
+        #     ProductForm(product, instance=Product())
+        #     for product in request.POST.getlist("products"),
+        # ]
         # all_valid = True
         # count_product_errors = 0
-        # products_report = []
-        # products = []
-        # for product in request.POST.getlist("product", []):
-        #     product_form = forms.ProductForm(product, instance=Product())
-        #     if product_form.is_valid():
-        #         product = product_form.save()
-        #         products.append(product)
+        # products_report = products = []
+        # for form in forms:
+        #     if form.is_valid():
+        #         products.append(product_form.save())
         #     else:
         #         all_valid = False
         #         count_product_errors += 1
@@ -56,6 +36,26 @@ def product_create(request):
         #             'product_id': str(product.id),
         #             'errors': errors
         #         })
+        all_valid = True
+        count_product_errors = 0
+        products_report = []
+        products = []
+        for product in request.POST.getlist("product", []):
+            product_form = forms.ProductForm(product, instance=Product())
+            if product_form.is_valid():
+                product = product_form.save()
+                products.append(product)
+            else:
+                all_valid = False
+                count_product_errors += 1
+                errors = []
+                for key,value in reschedule_form.errors.items():
+                    error_msg +="{}: {}".format(key, ','.join(value))
+                    errors.append(error_msg)
+                products_report.append({
+                    'product_id': str(product.id),
+                    'errors': errors
+                })
         # Add products in a bulk creation
         if not all_valid:
             response = json.dumps({
