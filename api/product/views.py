@@ -9,12 +9,14 @@ from product.models import Product
 from .forms import ProductForm
 
 def product_list(request):
+    """Return list of products."""
     products = Product.objects.all()
     data = {"products": list(products.values("id", "name", "value", "discount_value", "stock"))}
     return JsonResponse(data)
 
 @csrf_exempt
 def product_create(request):
+    """Bulk creation of one or many products."""
     if request.method == "POST":
         all_valid = True
         count_product_errors = 0
@@ -35,7 +37,6 @@ def product_create(request):
                     'product_name': product.get('name', ''),
                     'errors': errors
                 })
-        # Add products in a bulk creation
         if not all_valid:
             response = json.dumps({
                 'status': 'ERROR',
@@ -43,6 +44,7 @@ def product_create(request):
                 'number_of_products_unable_to_parse': count_product_errors
             })
             return HttpResponse(response, status=422, content_type="application/json")
+        # Add products in a bulk creation
         Product.objects.bulk_create(products)
         response = json.dumps({
             'status': 'OK'
