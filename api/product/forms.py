@@ -28,15 +28,6 @@ class ProductForm(forms.ModelForm):
         instance = super(ProductForm, self).save(commit=False)
         return instance
 
-    def clean_discount_value(self):
-        discount_value = self.cleaned_data['discount_value']
-        if discount_value and :
-
-        cashback_discount_maximum_value = self.cleaned_data['cashback_discount_maximum_value']
-        if cashback_discount_value_type and cashback_discount_value_type != DiscountValueType.PERCENTAGE:
-            return Price(0, currency=settings.DEFAULT_CURRENCY)
-        return cashback_discount_maximum_value
-
     def clean(self):
         super(ProductForm, self).clean()
         discount_value = self.cleaned_data.get('discount_value', '')
