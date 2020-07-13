@@ -19,3 +19,16 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+import os
+
+from django.conf.urls import url, include
+from django.contrib import admin
+
+# Local App URLs
+from api.urls import urlpatterns as api_urls
+
+urlpatterns = [
+    url(r'^balto-admin/', admin.site.urls),
+    url(r'^api/', include(api_urls)),
+]
