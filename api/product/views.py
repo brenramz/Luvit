@@ -40,9 +40,11 @@ def product_create(request):
         count_product_errors = 0
         products_report = []
         products = []
-        print('request post: ', request.body)
-        return HttpResponse(request.body, status=200, content_type="application/json")
-        # for product in request.body.getlist("product"):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        print('request post: ', body)
+        return HttpResponse(body['products'], status=200, content_type="application/json")
+        # for product in body['products']:
         #     product_form = forms.ProductForm(product, instance=Product())
         #     if product_form.is_valid():
         #         product = product_form.save()
