@@ -5,7 +5,7 @@ from product.models import Product
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fiels = '__all__'
+        fields = '__all__'
 
     def save(self, commit=True):
         instance = super(ProductForm, self).save(commit=False)
