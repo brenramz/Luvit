@@ -31,9 +31,6 @@ def product_create(request):
                 all_valid = False
                 count_product_errors += 1
                 errors = product_form.errors
-                # for key,value in product_form.errors.items():
-                #     error_msg +="{}: {}".format(key, ','.join(value))
-                #     errors.append(error_msg)
                 products_report.append({
                     'product_name': product.get('name', ''),
                     'errors': errors

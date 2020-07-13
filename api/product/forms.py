@@ -38,9 +38,9 @@ class ProductForm(forms.ModelForm):
         return cashback_discount_maximum_value
 
     def clean(self):
-        super().clean()
-        discount_value = self.cleaned_data.get("discount_value")
-        value = self.cleaned_data.get("value")
+        super(ProductForm, self).clean()
+        discount_value = self.cleaned_data.get('discount_value', '')
+        value = self.cleaned_data.get('value')
         if discount_value and discount_value > value:
             self.add_error('discount_value', 'Invalid discount value')
         return self.cleaned_data
