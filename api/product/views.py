@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from product.models import Product
+from .forms import ProductForm
 
 def product_list(request):
     products = Product.objects.all()
@@ -43,7 +44,7 @@ def product_create(request):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         for product in body['products']:
-            product_form = forms.ProductForm(product, instance=Product())
+            product_form = ProductForm(product, instance=Product())
             if product_form.is_valid():
                 product = product_form.save()
                 products.append(product)
