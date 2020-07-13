@@ -40,8 +40,8 @@ def product_create(request):
         count_product_errors = 0
         products_report = []
         products = []
-        print('request post: ', request.POST)
-        return HttpResponse(request.POST, status=200, content_type="application/json")
+        print('request post: ', request.data)
+        return HttpResponse(request.data, status=200, content_type="application/json")
         # for product in request.POST.getlist("product"):
         #     product_form = forms.ProductForm(product, instance=Product())
         #     if product_form.is_valid():
