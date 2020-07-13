@@ -11,7 +11,7 @@ class Product(models.Model):
         validators=[MinValueValidator(0.0), MaxValueValidator(99999.9)])
     discount_value = models.DecimalField(
         'discount value', decimal_places=1,
-        validators=[MinValueValidator(0.0), MaxValueValidator(99999.9)]))
+        validators=[MinValueValidator(0.0), MaxValueValidator(99999.9)])
     stock = models.IntegerField(
         'stock', validators=[MinValueValidator(-1)])
 
